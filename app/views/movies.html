@@ -5,14 +5,14 @@
   <input type="button" ng-click="movies.setPage(0)" value="top rated movies">
   <input type="button" ng-click="movies.setPage(1)" value="search lists">
   <input type="button" ng-click="movies.setPage(2)" value="my lists">
-  <input type="button" ng-click="movies.setPage(3)" ng-if="movies.selectedList" value="Edit selected list">
+  <input type="button" ng-click="movies.setPage(3)" ng-if="movies.selectedList" value="Edit Last selected list">
 
 
 
   <div ng-show="movies.active==0" class="feed-box">
     <h3>Top rated movies</h3>
-    <div class="feed-box" ng-repeat="feed in movies.feeds.results" >
-      <movie-box movie-data="feed" selected-list="movies.selectedList" ></movie-box>
+    <div class="feed-box" ng-repeat="feed in movies.feeds.results"  >
+      <movie-box movie-data="feed" selected-list="movies.selectedList" movie-list="true" ></movie-box>
     </div>
 
   </div>
@@ -45,8 +45,12 @@
 
   <div ng-show="movies.active==3" class="feed-box" >
     <h3>Edit list: {{movies.selectedList.name}}</h3>
-    <div class="feed-box" ng-repeat="item in movies.selectedList.items">
-      <movie-box movie-data="item" selected-list="movies.selectedList"></movie-box>
+    <div class="feed-box" ng-hide="movies.selectedList.items.length>0">
+      <h4>There are no movies here</h4>
+    </div>
+    <div class="feed-box" ng-repeat="item in movies.selectedList.items" ng-show="movies.selectedList.items.length>0">
+      <movie-box movie-data="item" selected-list="movies.selectedList" movie-list="false"></movie-box>
+      <a ng-click="movies.removeFromList(item.id,movies.selectedList.id)">Remove</a>
     </div>
   </div>
 

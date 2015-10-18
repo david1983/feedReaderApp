@@ -52,6 +52,12 @@ angular.module('feedReaderApp')
       }.bind(this))
     }
 
+    this.removeFromList = function(movie_id,list_id){
+      moviesdb.removeFromList(movie_id,list_id)
+        .then(function(){
+          this.getList(list_id);
+        }.bind(this))
+    }
 
     this.createList = function(name,description){
       moviesdb.createList(name,description).then(function(result){

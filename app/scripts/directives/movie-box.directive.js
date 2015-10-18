@@ -6,7 +6,8 @@ angular.module('feedReaderApp')
       restrict: 'E',
       scope:{
         movieData: '=',
-        selectedList: '='
+        selectedList: '=',
+        movieList: '='
       },
       template: '<ng-include src="\'views/movie-box.html\'"></ng-include>',
       controller: ['$scope','$q','$location', function($scope,$q, $location){

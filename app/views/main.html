@@ -6,11 +6,9 @@
 
 <div ng-if="main.profile.wc" class="home-box">
 
-  <img class="profile-pic" ng-src="{{profile.Ld.Ei}}" ng-show="profile.Ld.Ei" >
-
   <google-plus-signout ></google-plus-signout>
   <div >
-    <h3>Google Feed</h3>
+    <h3>Google feeds using webApi</h3>
     <hr>
 
     <google-plus-feeds google-feeds="main.feeds" web-api="true" api-key="AIzaSyCAZB__dXcyioKhxSxA0zAXfu17kfXMt90"></google-plus-feeds>
