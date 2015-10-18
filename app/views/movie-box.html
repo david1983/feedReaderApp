@@ -1,0 +1,34 @@
+<div>
+  <img ng-src="{{movieData.image_full_path}}" style="width:100%"><hr>
+  <h4>{{movieData.title}}</h4>
+  <p>{{movieData.overview}}</p>
+</div>
+
+
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default" ng-click="goTo(2)">Create a list</button>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" ng-click="getMyLists()" >
+      Add to list
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li ng-show="myLists.length == itemPresentCounter"><a>No Lists available</a></li>
+      <li ng-repeat="list in myLists" ng-click="add(list.id)" ng-hide="list.itemPresent"><a >{{list.name}}</a></li>
+    </ul>
+  </div>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" ng-click="getMyLists()">
+      Remove from list
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li ng-show="itemPresentCounter == 0"><a>No Lists available</a></li>
+      <li ng-repeat="list in myLists" ng-click="remove(list.id)" ng-show="list.itemPresent"><a >{{list.name}}</a></li>
+    </ul>
+  </div>
+
+
+</div>

@@ -1,0 +1,54 @@
+<ng-include src="'views/navbar.html'"></ng-include>
+
+<div class="container">
+
+  <input type="button" ng-click="movies.setPage(0)" value="top rated movies">
+  <input type="button" ng-click="movies.setPage(1)" value="search lists">
+  <input type="button" ng-click="movies.setPage(2)" value="my lists">
+  <input type="button" ng-click="movies.setPage(3)" ng-if="movies.selectedList" value="Edit selected list">
+
+
+
+  <div ng-show="movies.active==0" class="feed-box">
+    <h3>Top rated movies</h3>
+    <div class="feed-box" ng-repeat="feed in movies.feeds.results" >
+      <movie-box movie-data="feed" selected-list="movies.selectedList" ></movie-box>
+    </div>
+
+  </div>
+
+  <div ng-show="movies.active==1" class="feed-box">
+    <h3>Search lists</h3>
+    <form name="list_form" class="feed-box">
+      <input type="text" placeholder="List name" ng-model="movies.list_search_name" name="list_name" required>
+      <input type="button" value="search list" ng-click="movies.searchList(movies.list_search_name)">
+    </form>
+    <div class="feed-box" ng-repeat="item in movies.lists" >
+      <h4>{{item.name}}</h4>
+      <p>{{item.description}}</p>
+    </div>
+  </div>
+
+  <div ng-show="movies.active==2" class="feed-box" >
+    <h3>My lists</h3>
+    <form name="list_form" class="feed-box">
+      <input type="text" placeholder="List name" ng-model="movies.myList.name" name="list_name" required>
+      <input type="text" placeholder="List description" ng-model="movies.myList.description" name="list_description" required>
+      <input type="button" value="add list" ng-click="movies.createList(movies.myList.name, movies.myList.description)">
+    </form>
+    <div class="feed-box" ng-repeat="item in movies.mylists" ng-click="movies.getList(item.id)">
+      <h4>{{item.name}}</h4>
+      <p>{{item.description}}</p>
+      <a  ng-click="movies.removeList(item.id)">remove</a>
+    </div>
+  </div>
+
+  <div ng-show="movies.active==3" class="feed-box" >
+    <h3>Edit list: {{movies.selectedList.name}}</h3>
+    <div class="feed-box" ng-repeat="item in movies.selectedList.items">
+      <movie-box movie-data="item" selected-list="movies.selectedList"></movie-box>
+    </div>
+  </div>
+
+</div>
+

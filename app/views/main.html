@@ -1,0 +1,19 @@
+<ng-include src="'views/navbar.html'"></ng-include>
+<div class="container">
+<div ng-hide="main.profile.wc" class="login-box">
+  <google-plus-signin  clientid="1086480001656-uhor5fl802g3r1vembod7cidh14bq33b.apps.googleusercontent.com"></google-plus-signin>
+</div>
+
+<div ng-if="main.profile.wc" class="home-box">
+
+  <img class="profile-pic" ng-src="{{profile.Ld.Ei}}" ng-show="profile.Ld.Ei" >
+
+  <google-plus-signout ></google-plus-signout>
+  <div >
+    <h3>Google Feed</h3>
+    <hr>
+
+    <google-plus-feeds google-feeds="main.feeds" web-api="true" api-key="AIzaSyCAZB__dXcyioKhxSxA0zAXfu17kfXMt90"></google-plus-feeds>
+  </div>
+</div>
+</div>
